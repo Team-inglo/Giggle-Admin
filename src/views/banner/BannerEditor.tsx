@@ -137,9 +137,6 @@ const BannerEditor = () => {
                 >
                 {isEditMode ? "수정" : "저장"}
               </CButton>
-              <CButton color="secondary" className="ms-2">
-                목록
-              </CButton>
             </CCol>
           </CForm>
         </CCardBody>
