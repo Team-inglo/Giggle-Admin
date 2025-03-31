@@ -26,6 +26,23 @@ export function useLoginMutation() {
   });
 }
 
+/* login (POST)
+  로그아웃 API
+*/
+export async function postLogout(): Promise<void> {
+  await axiosInstance.post('/api/v1/auth/logout', null, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+}
+
+export function useLogoutMutation() {
+  return useMutation<void, Error>({
+    mutationFn: postLogout,
+  });
+}
+
 /* reissue (POST)
   토큰 재발급 API
 */

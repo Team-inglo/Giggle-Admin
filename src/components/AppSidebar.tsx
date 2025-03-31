@@ -19,15 +19,22 @@ import sygnetImg from "@assets/brand/sygnet.png";
 
 // sidebar nav config
 import navigation from "../_nav";
+import { useLogoutMutation } from "../apis/account/accounts";
 
 const AppSidebar = () => {
   const dispatch = useDispatch();
   const unfoldable = useSelector((state) => state.sidebarUnfoldable);
   const sidebarShow = useSelector((state) => state.sidebarShow);
 
+  const { mutate: logout } = useLogoutMutation();
+
   const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = "/login";
+    logout(undefined, {
+      onSuccess: () => {
+        localStorage.clear();
+        window.location.href = '/login';
+      },
+    });
   };
 
   return (
