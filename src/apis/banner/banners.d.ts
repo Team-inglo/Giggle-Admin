@@ -22,7 +22,7 @@ export interface Banner {
   }
   
   export interface GetBannersResponse {
-    accounts: Banner[];
+    banners: Banner[];
     page_info: PageInfo;
   }
 

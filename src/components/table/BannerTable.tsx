@@ -12,11 +12,8 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from "@coreui/react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BannerImageCell from "./imageCell/BannerImageCell";
-import { useDeleteBannerMutation } from "@/src/apis/banner/banners";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default function BannerTable({
   bannerData,
