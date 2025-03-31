@@ -10,7 +10,7 @@ const routes = [
   { path: '/', exact: true, name: '홈' },
   { path: '/login', name: '대시보드', element: Login },
   { path: '/dashboard', name: '대시보드', element: Dashboard },
-  { path: '/user-management', name: '유저관리', element: UserManagement, exact: true },
+  { path: '/user-management', name: '회원관리', element: UserManagement, exact: true },
   { path: '/banner-management', name: '배너관리', element: BannerManagement, exact: true },
   { path: '/banner-create', name: '배너생성/수정', element: BannerEditor, exact: true },
   { path: '/banner-editor/:id', name: '배너생성/수정', element: BannerEditor, exact: true },

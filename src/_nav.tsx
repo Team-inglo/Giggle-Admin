@@ -1,9 +1,14 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
-  cilDescription,
-  cilPencil,
-  cilStar,
+  cilSpeedometer,
+  cilEnvelopeOpen,
+  cilEnvelopeLetter,
+  cilUser,
+  cilWindowMaximize,
+  cilBell,
+  cilLibraryBuilding,
+  cilExternalLink
 } from '@coreui/icons'
 import { CNavGroup, CNavItem } from '@coreui/react'
 
@@ -31,12 +36,12 @@ const _nav = [
     component: CNavItem,
     name: '대시보드',
     to: '/dashboard',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
   {
     component: CNavGroup,
     name: '신청',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -53,7 +58,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: '공고',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilEnvelopeLetter} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -70,7 +75,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: '회원',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -87,7 +92,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: '배너/팝업',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilWindowMaximize} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -104,7 +109,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: '알림',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -116,7 +121,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: '학교',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilLibraryBuilding} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -129,7 +134,7 @@ const _nav = [
     component: CNavItem,
     name: '서비스 바로가기',
     href: 'https://coreui.io/react/docs/templates/installation/',
-    icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilExternalLink} customClassName="nav-icon" />,
   },
 ]
 
