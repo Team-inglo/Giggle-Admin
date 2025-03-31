@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index'
+import { useNavigate } from 'react-router-dom'
+import { getAccessToken, getRefreshToken } from '../utils/tokenUtil';
 
 const DefaultLayout = () => {
+  const navigate = useNavigate();
+  const isLoggedIn = getAccessToken();
+
+  useEffect(() => {
+    if (!getAccessToken()) {
+      navigate('/login')
+    }
+  }, [isLoggedIn, navigate])
+
   return (
     <div>
       <AppSidebar />

@@ -33,7 +33,9 @@
       "@pages/*": ["pages/*"],
       "@apis/*": ["apis/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"]
+      "@types/*": ["types/*"],
+      "@views/*": ["views/*"],
+      "@layout/*": ["layout/*"],
     }
   },
   "include": ["src"]

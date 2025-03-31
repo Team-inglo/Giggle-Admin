@@ -1,15 +1,19 @@
 import React from 'react'
+import UserManagement from '@views/user/UserManagement'
+import BannerManagement from '@views/banner/BannerManagement'
+import Login from '@pages/login/Login'
+import BannerEditor from '@views/banner/BannerEditor'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
-const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/theme', name: 'Theme', element: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', element: Colors },
-  { path: '/theme/typography', name: 'Typography', element: Typography },
+  { path: '/', exact: true, name: '홈' },
+  { path: '/login', name: '대시보드', element: Login },
+  { path: '/dashboard', name: '대시보드', element: Dashboard },
+  { path: '/user-management', name: '유저관리', element: UserManagement, exact: true },
+  { path: '/banner-management', name: '배너관리', element: BannerManagement, exact: true },
+  { path: '/banner-create', name: '배너생성/수정', element: BannerEditor, exact: true },
+  { path: '/banner-editor/:id', name: '배너생성/수정', element: BannerEditor, exact: true },
 ]
 
 export default routes
