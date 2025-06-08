@@ -182,7 +182,6 @@ const SchoolEditor = () => {
 
             <CCol xs={12}>
               <CFormLabel>외국인 담당센터 주소 *</CFormLabel>
-              
             </CCol>
 
             <CCol xs={12} className="text-end">

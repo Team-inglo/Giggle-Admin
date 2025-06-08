@@ -20,8 +20,6 @@ export default function UserTable({
   currentPage,
   onPageChange,
 }) {
-  console.log(pageData);
-
   const [selectedIds, setSelectedIds] = useState<string[]>([]); // 선택된 유저 id 목록
   const totalPages = Math.ceil((pageData?.total_items ?? 0) / 10);
 
@@ -52,7 +50,10 @@ export default function UserTable({
               <CTableHeaderCell className="text-center">
                 <input
                   type="checkbox"
-                  checked={userData.length > 0 && userData.every((item) => selectedIds.includes(item.id))}
+                  checked={
+                    userData.length > 0 &&
+                    userData.every((item) => selectedIds.includes(item.id))
+                  }
                   onChange={handleSelectAll}
                 />
               </CTableHeaderCell>

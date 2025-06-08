@@ -21,10 +21,9 @@ export default function BannerTable({
   currentPage,
   onPageChange,
   selectedIds,
-  setSelectedIds
+  setSelectedIds,
 }) {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const totalPages = Math.ceil((pageData?.total_items ?? 0) / 10);
 
@@ -109,13 +108,13 @@ export default function BannerTable({
                   <div>{item.registered_at}</div>{" "}
                 </CTableDataCell>
 
-                  <BannerImageCell imageUrl={item.img_url} />
+                <BannerImageCell imageUrl={item.img_url} />
 
                 <CTableDataCell>
-                  <CButton 
-                  color="primary" 
-                  size="sm"
-                  onClick={() => navigate(`/banner-editor/${item.id}`)}
+                  <CButton
+                    color="primary"
+                    size="sm"
+                    onClick={() => navigate(`/banner-editor/${item.id}`)}
                   >
                     상세보기
                   </CButton>

@@ -23,7 +23,7 @@ const UserManagement = () => {
 
   const today = new Date();
   const oneMonthAgo = new Date();
-  oneMonthAgo.setMonth(today.getMonth() - 1);
+  oneMonthAgo.setMonth(today.getMonth() - 4);
 
   const [startDate, setStartDate] = useState(getFormattedDate(oneMonthAgo));
   const [endDate, setEndDate] = useState(getFormattedDate(today));

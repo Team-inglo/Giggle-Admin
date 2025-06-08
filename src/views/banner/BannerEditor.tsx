@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import {
   CCard,
   CCardBody,
@@ -13,9 +13,13 @@ import {
   CCol,
   CRow,
   CForm,
-} from '@coreui/react';
-import HtmlEditor from '@components/html/HtmlEditor';
-import { useBannerDetailQuery, useCreateBannerMutation, useEditBannerMutation } from '@apis/banner/banners';
+} from "@coreui/react";
+import HtmlEditor from "@components/html/HtmlEditor";
+import {
+  useBannerDetailQuery,
+  useCreateBannerMutation,
+  useEditBannerMutation,
+} from "@apis/banner/banners";
 
 const BannerEditor = () => {
   // id
@@ -23,19 +27,21 @@ const BannerEditor = () => {
   const navigate = useNavigate();
 
   const isEditMode = !!id;
-  const { data, isLoading } = useBannerDetailQuery(id ?? '');
 
-  const [title, setTitle] = useState('');
-  const [target, setTarget] = useState('전체');
-  const [htmlCode, setHtmlCode] = useState('');
-  const [previewHtml, setPreviewHtml] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  // 항상 호출하지만, id 없으면 `enabled: false`
+  const { data, isLoading } = useBannerDetailQuery(id ?? "", !!id);
+
+  const [title, setTitle] = useState("");
+  const [target, setTarget] = useState("전체");
+  const [htmlCode, setHtmlCode] = useState("");
+  const [previewHtml, setPreviewHtml] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
 
   const createBannerMutation = useCreateBannerMutation();
   const editBannerMutation = useEditBannerMutation();
 
-  // 💡 상세 데이터 들어오면 상태 세팅
+  // 상세 데이터 들어오면 상태 세팅
   useEffect(() => {
     if (data) {
       setTitle(data.title);
@@ -59,29 +65,29 @@ const BannerEditor = () => {
         { id, ...formPayload },
         {
           onSuccess: () => {
-            alert('배너가 수정되었습니다');
-            navigate('/banner-management');
+            alert("배너가 수정되었습니다");
+            navigate("/banner-management");
           },
         }
       );
     } else {
       createBannerMutation.mutate(formPayload, {
         onSuccess: () => {
-          alert('배너가 등록되었습니다');
-          navigate('/banner-management');
+          alert("배너가 등록되었습니다");
+          navigate("/banner-management");
         },
       });
     }
-  }
+  };
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        setImageFile(file); // ✅ 등록용 파일
-        const imageUrl = URL.createObjectURL(file);
-        setImageUrl(imageUrl); // ✅ 미리보기 용
-      }
-    };
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImageFile(file); // ✅ 등록용 파일
+      const imageUrl = URL.createObjectURL(file);
+      setImageUrl(imageUrl); // ✅ 미리보기 용
+    }
+  };
 
   const handlePreview = () => {
     setPreviewHtml(htmlCode);
@@ -106,7 +112,7 @@ const BannerEditor = () => {
             <CCol xs={12}>
               <CFormLabel>표시 대상 *</CFormLabel>
               <div className="d-flex gap-3">
-                {['GUEST', 'USER', 'OWNER'].map((label) => (
+                {["GUEST", "USER", "OWNER"].map((label) => (
                   <CFormCheck
                     key={label}
                     type="radio"
@@ -122,19 +128,21 @@ const BannerEditor = () => {
 
             <CCol xs={12}>
               <CFormLabel>대표이미지 *</CFormLabel>
-              <CFormInput type="file" accept="image/*" onChange={handleImageUpload} />
+              <CFormInput
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+              />
             </CCol>
 
             <CCol xs={12} className="text-end">
-              <CButton 
+              <CButton
                 color="light"
-                onClick={() => navigate('/banner-management')}
-              >취소</CButton>
-              <CButton 
-                color="dark" 
-                className="ms-2"
-                onClick={handleSave}
-                >
+                onClick={() => navigate("/banner-management")}
+              >
+                취소
+              </CButton>
+              <CButton color="dark" className="ms-2" onClick={handleSave}>
                 {isEditMode ? "수정" : "저장"}
               </CButton>
             </CCol>
@@ -145,7 +153,7 @@ const BannerEditor = () => {
       <CRow>
         {/* html editor */}
         <CCol md={8}>
-        <HtmlEditor htmlCode={htmlCode} setHtmlCode={setHtmlCode} />
+          <HtmlEditor htmlCode={htmlCode} setHtmlCode={setHtmlCode} />
         </CCol>
 
         <CCol md={4}>
@@ -156,9 +164,15 @@ const BannerEditor = () => {
                 미리보기
               </CButton>
             </CCardHeader>
-            <CCardBody style={{ minHeight: '300px' }}>
+            <CCardBody style={{ minHeight: "300px" }}>
               <div dangerouslySetInnerHTML={{ __html: previewHtml }} />
-              {imageUrl && <img src={imageUrl} alt="대표이미지" style={{ maxWidth: '100%', marginTop: '1rem' }} />}
+              {imageUrl && (
+                <img
+                  src={imageUrl}
+                  alt="대표이미지"
+                  style={{ maxWidth: "100%", marginTop: "1rem" }}
+                />
+              )}
             </CCardBody>
           </CCard>
         </CCol>

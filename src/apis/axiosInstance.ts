@@ -1,11 +1,17 @@
-import axios from 'axios';
+import axios from "axios";
 import { postReissueToken } from "@apis/account/accounts";
-import { getAccessToken, setAccessToken, getRefreshToken } from '@utils/tokenUtil';
+import {
+  getAccessToken,
+  setAccessToken,
+  getRefreshToken,
+  removeAccessToken,
+  removeRefreshToken,
+} from "@utils/tokenUtil";
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
@@ -45,7 +51,10 @@ axiosInstance.interceptors.response.use(
 
     if (!getRefreshToken()) {
       // 리프레시 토큰 없으면 로그아웃 처리
-      window.location.href = '/login';
+      removeAccessToken();
+      removeRefreshToken();
+
+      window.location.href = "/login";
       return Promise.reject(error);
     }
 
@@ -66,8 +75,11 @@ axiosInstance.interceptors.response.use(
     isRefreshing = true;
 
     try {
+      console.log("Refreshing token...");
       const { access_token: newAccessToken } = await postReissueToken({
-        access_token: getAccessToken()!,
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
       });
 
       setAccessToken(newAccessToken);
@@ -77,8 +89,11 @@ axiosInstance.interceptors.response.use(
       originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
       return axiosInstance(originalRequest);
     } catch (refreshError) {
+      removeAccessToken();
+      removeRefreshToken();
+
       processQueue(refreshError, null);
-      window.location.href = '/login';
+      window.location.href = "/login";
       return Promise.reject(refreshError);
     } finally {
       isRefreshing = false;

@@ -1,38 +1,42 @@
-import React, { Suspense, useEffect } from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React, { Suspense, useEffect } from "react";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import { CSpinner, useColorModes } from '@coreui/react'
-import './scss/style.scss'
+import { CSpinner, useColorModes } from "@coreui/react";
+import "./scss/style.scss";
 
 // We use those styles to show code examples, you should remove them in your application.
-import './scss/examples.scss'
+import "./scss/examples.scss";
 
 // Containers
-const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
+const DefaultLayout = React.lazy(() => import("./layout/DefaultLayout"));
 
 // Pages
-const Login = React.lazy(() => import('./pages/login/Login'))
-const Page404 = React.lazy(() => import('./pages/page404/Page404'))
-const Page500 = React.lazy(() => import('./pages/page500/Page500'))
+const Login = React.lazy(() => import("./pages/login/Login"));
+const Page404 = React.lazy(() => import("./pages/page404/Page404"));
+const Page500 = React.lazy(() => import("./pages/page500/Page500"));
 
 const App = () => {
-  const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
-  const storedTheme = useSelector((state) => state.theme)
+  const { isColorModeSet, setColorMode } = useColorModes(
+    "coreui-free-react-admin-template-theme"
+  );
+  const storedTheme = useSelector((state) => state.theme);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.href.split('?')[1])
-    const theme = urlParams.get('theme') && urlParams.get('theme').match(/^[A-Za-z0-9\s]+/)[0]
+    const urlParams = new URLSearchParams(window.location.href.split("?")[1]);
+    const theme =
+      urlParams.get("theme") &&
+      urlParams.get("theme").match(/^[A-Za-z0-9\s]+/)[0];
     if (theme) {
-      setColorMode(theme)
+      setColorMode(theme);
     }
 
     if (isColorModeSet()) {
-      return
+      return;
     }
 
-    setColorMode(storedTheme)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    setColorMode(storedTheme);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <HashRouter>
@@ -51,7 +55,7 @@ const App = () => {
         </Routes>
       </Suspense>
     </HashRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;

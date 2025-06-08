@@ -45,14 +45,14 @@ const SchoolManagement = () => {
       alert("하나의 항목만 선택해주세요.");
       return;
     }
-  
+
     const confirmDelete = confirm("정말 삭제하시겠습니까?");
     if (!confirmDelete) return;
-  
+
     deleteSchoolMutate(Number(selectedIds[0]), {
       onSuccess: () => {
         alert("삭제되었습니다.");
-        queryClient.invalidateQueries({ queryKey: ['schools'] }); // ✅ banners → schools
+        queryClient.invalidateQueries({ queryKey: ["schools"] }); // ✅ banners → schools
         setSelectedIds([]);
       },
     });

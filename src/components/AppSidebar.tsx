@@ -34,8 +34,12 @@ const AppSidebar = () => {
         localStorage.clear();
         window.location.href = '/login';
       },
+      onError: () => {
+        localStorage.clear();
+        window.location.href = '/login';
+      },
     });
-  };
+  };  
 
   return (
     <CSidebar
