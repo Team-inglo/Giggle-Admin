@@ -49,6 +49,7 @@
     "postcss": "^8.5.2",
     "prettier": "^3.5.3",
     "sass": "^1.85.0",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.33.1",
     "vite": "^6.1.0"
   }
