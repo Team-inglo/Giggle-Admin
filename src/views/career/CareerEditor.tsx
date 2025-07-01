@@ -12,12 +12,14 @@ import {
   CFormSelect,
   CFormTextarea,
   CButton,
+  CRow,
 } from "@coreui/react";
 import {
   useCareerDetailQuery,
   useCreateCareerMutation,
   useUpdateCareerMutation,
 } from "@apis/career_posting/career_postings";
+import HtmlEditor from "@components/html/HtmlEditor";
 
 export default function CareerEditor() {
   const { id } = useParams<{ id: string }>();
@@ -281,14 +283,23 @@ export default function CareerEditor() {
             />
           </CCol>
 
-          <CCol xs={12}>
-            <CFormLabel>상세 내용</CFormLabel>
-            <CFormTextarea
-              value={form.details}
-              onChange={(e) => handleChange("details", e.target.value)}
-              rows={5}
-            />
-          </CCol>
+          <CRow className="my-4">
+            {/* html editor */}
+            <CCol md={8}>
+              <HtmlEditor htmlCode={form.details} setHtmlCode={(value) => handleChange("details", value)} />
+                  </CCol>
+          
+                  <CCol md={4}>
+                    <CCard className="h-100">
+                      <CCardHeader className="d-flex justify-content-between align-items-center">
+                        <span>미리보기</span>
+                      </CCardHeader>
+                      <CCardBody style={{ minHeight: "300px" }}>
+                        <div dangerouslySetInnerHTML={{ __html: form.details }} />
+                      </CCardBody>
+                    </CCard>
+                  </CCol>
+                </CRow>
 
           <CCol xs={12}>
             <CFormLabel>지원 링크</CFormLabel>

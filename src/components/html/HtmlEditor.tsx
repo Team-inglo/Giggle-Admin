@@ -29,17 +29,17 @@ const formats = [
 
 const HtmlEditor = ({ htmlCode, setHtmlCode }) => {
   return (
-    <CCard className="h-100">
+    <CCard className="h-100 d-flex flex-column">
       <CCardHeader>Html 에디터</CCardHeader>
-      <CCardBody>
+      <CCardBody className="d-flex flex-column flex-grow-1" style={{ minHeight: '300px' }}>
         <ReactQuill
           theme="snow"
           value={htmlCode}
           onChange={setHtmlCode}
           modules={modules}
           formats={formats}
-          style={{ flex: 1 }}
-          placeholder="여기에 배너 내용을 작성하세요"
+          style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
+          placeholder="여기에 내용을 작성하세요"
         />
       </CCardBody>
     </CCard>
